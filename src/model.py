@@ -1,8 +1,6 @@
 from time import time
-
 import pygame
 from OpenGL.GL import *
-
 from animation import Animation
 from sound import Sound
 
@@ -17,32 +15,29 @@ class Model:
         glRotatef(ang, 0, 0, 1)
 
     def __init__(
-        self,
-        name,
-        assets_folder,
-        animations_prefix,
-        texture_path,
-        initial_position,
-        size,
-        speed,
-        default_sound,
-        back,
+            self,
+            name,
+            assets_folder,
+            animations_prefix,
+            texture_path,
+            initial_position,
+            size,
+            speed,
+            default_sound,
+            back,
     ):
         self.name = name
         self.animations = {}
         self.current_animation = None
         self.default_sound = default_sound
         self.current_sound = self.default_sound
-
         if self.current_sound:
             self.current_sound.start()
-
         self.texture_path = texture_path
         self.assets_folder = assets_folder
         self.animations_prefix = animations_prefix
         self.default_animation = None
         self.unifTextura = None
-
         if initial_position:
             self.x = initial_position[0]
             self.y = initial_position[1]
@@ -53,7 +48,6 @@ class Model:
             self.z = 0
         self.rotation = 0
         self.child_models = []
-
         self.size = size
         self.speed = speed
         self.back = back
@@ -83,7 +77,7 @@ class Model:
                     sound_info.get("volume", 1),
                     sound_info.get("loop", False),
                 )
-            animation = Animation(prefix, self.animations_prefix[prefix]["frames"], sound,)
+            animation = Animation(prefix, self.animations_prefix[prefix]["frames"], sound, )
             animation.load_animations(self.assets_folder, prefix)
             self.add_animation(prefix, animation)
 
@@ -108,7 +102,6 @@ class Model:
         self.current_sound = (
             self.current_animation.sound if self.current_animation.sound else self.default_sound
         )
-
         if self.current_sound:
             self.current_sound.start()
         self.current_animation.start_time = time()
@@ -120,21 +113,16 @@ class Model:
             glFrontFace(GL_CW)
         else:
             glFrontFace(GL_CCW)
-
         if self.size:
             glScale(self.size, self.size, self.size)
-
         glRotatef(self.rotation, 0, 0, 1)
         glTranslate(self.x, self.y, self.z)
-
         if current_obj.vertexes:
             glEnableClientState(GL_VERTEX_ARRAY)
             glVertexPointer(3, GL_FLOAT, 0, current_obj.vertexes)
-
         if current_obj.normals:
             glEnableClientState(GL_NORMAL_ARRAY)
             glNormalPointer(GL_FLOAT, 0, current_obj.normals)
-
         if current_obj.textures:
             glEnableClientState(GL_TEXTURE_COORD_ARRAY)
             glTexCoordPointer(2, GL_FLOAT, 0, current_obj.textures)
@@ -144,15 +132,11 @@ class Model:
                 except:
                     print("Error loading unifTexture")
             glBindTexture(GL_TEXTURE_2D, self.texture)
-
         glDrawArrays(GL_TRIANGLES, 0, len(current_obj.poligons))
-
         if current_obj.vertexes:
             glDisableClientState(GL_VERTEX_ARRAY)
-
         if current_obj.normals:
             glDisableClientState(GL_NORMAL_ARRAY)
-
         if current_obj.textures:
             glBindTexture(GL_TEXTURE_2D, 0)
             glDisableClientState(GL_TEXTURE_COORD_ARRAY)

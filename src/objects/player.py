@@ -3,16 +3,16 @@ from src.model import Model
 
 class Player(Model):
     def __init__(
-        self,
-        name,
-        assets_folder,
-        animations_prefix,
-        texture_path,
-        initial_position,
-        size,
-        speed,
-        default_sound,
-        back,
+            self,
+            name,
+            assets_folder,
+            animations_prefix,
+            texture_path,
+            initial_position,
+            size,
+            speed,
+            default_sound,
+            back,
     ):
         super().__init__(
             name,
@@ -25,7 +25,6 @@ class Player(Model):
             default_sound,
             back,
         )
-
         self.actions = {
             "jump": {"active": False},
             "crouch": {"active": False},
@@ -34,7 +33,6 @@ class Player(Model):
             "salute": {"active": False},
             "point": {"active": False},
         }
-
         self.movement = []
 
     def add_move(self, move):

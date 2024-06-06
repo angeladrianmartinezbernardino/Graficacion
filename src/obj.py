@@ -8,7 +8,6 @@ class Object:
         self.normals = []
         self.textures = []
         self.poligons = []
-
         self.addValues = {
             "v": self._vertexes,
             "vn": self._normals,
@@ -28,9 +27,7 @@ class Object:
     def load_obj(file):
         obj_file = open(file, "r")
         lines = obj_file.readlines()
-
         obj = Object()
-
         for line in lines:
             trimmed_line = line.strip()
             line_info = trimmed_line.split(" ")
@@ -47,7 +44,6 @@ class Object:
                 y = [int(n) - 1 for n in line_info[2].split("/")]
                 z = [int(n) - 1 for n in line_info[3].split("/")]
                 obj.add_poligon(x, y, z)
-
         for pair in obj.poligons:
             vert = pair[0]
             normal = pair[1]

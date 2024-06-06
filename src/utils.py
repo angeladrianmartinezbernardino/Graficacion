@@ -1,15 +1,13 @@
 import json
 import random
 import numpy as np
-
 from OpenGL.GL import *
 from OpenGL.GL.shaders import *
-
 from model import Model
 from src.objects.player import Player
 from sound import Sound
-
 from pygame import mixer
+
 
 # Uso esta funcion para compilar de forma individual el codigo de cada componente del shader (vertex y fragment)
 # Le paso el path al archivo y el tipo de shader (GL_VERTEX_SHADER o GL_FRAGMENT_SHADER)
@@ -60,7 +58,6 @@ def create_shader(vSource, fSource):
     # individuales compilados, asi que libero sus recursos
     glDeleteShader(vProgram)
     glDeleteShader(fProgram)
-
     return shader
 
 
@@ -103,7 +100,6 @@ def load_models(gouraud=None):
                 else:
                     new_position.append(p)
             position = new_position
-
             sound_info = data["models"][model_info].get("default_sound")
             sound = None
             if sound_info:
@@ -112,7 +108,6 @@ def load_models(gouraud=None):
                     sound_info.get("volume", 1),
                     sound_info.get("loop", False),
                 )
-
             if model_info in ["knight", "weapon_k"]:
                 model = Player(
                     model_name,
@@ -174,7 +169,6 @@ def load_lighting():
         "linear_attenuation": GL_LINEAR_ATTENUATION,
         "quadratic_attenuation": GL_QUADRATIC_ATTENUATION,
     }
-
     data = get_configuration()
     l = 0
     for light in data["lighting"]:
@@ -189,13 +183,11 @@ def load_lighting():
 def load_materials():
     data = get_configuration()
     materials = data["materials"]
-
     # Asegurarnos de que todos los materiales son arrays de tipo float32
     diffuse = np.array(materials["diffuse"], dtype=np.float32)
     ambient = np.array(materials["ambient"], dtype=np.float32)
     specular = np.array(materials["specular"], dtype=np.float32)
     shininess = np.array([materials["shininess"]], dtype=np.float32)
-
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse)
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient)
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular)
