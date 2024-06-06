@@ -26,6 +26,10 @@ def init():
     glViewport(0, 0, display[0], display[1])
     glFrustum(-1, 1, -1, 1, 1, 1000)
 
+    # Establecer color de fondo azul
+    glClearColor(0.5, 0.8, 1.0, 0.0)  # Valores RGB + Alpha
+
+
 def main():
     init()
 
