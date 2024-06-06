@@ -1,0 +1,86 @@
+{
+  "sounds": {
+    "knight_run": "run.wav",
+    "weapon": "fire.wav"
+  },
+  "materials": {
+    "diffuse": [1, 1, 1, 1],
+    "ambient": [1, 1, 1, 1],
+    "specular": [1, 1, 1, 1],
+    "shininess": 16
+  },
+  "lighting": [
+    {
+      "diffuse": [1.0, 1.0, 1.0, 1.0],
+      "ambient": [0.35, 0.35, 0.35, 0.7],
+      "specular": [0.0, 0.0, 0.0, 1.0],
+      "position": [1.0, 1.0, 1.0, 1.0]
+    },
+    {
+      "diffuse": [1.0, 0.0, 0.0, 1],
+      "ambient": [0.1, 0.1, 0.1, 1],
+      "specular": [0, 100, -50, 1],
+      "position": [1.0, 1.0, 1.0, 1.0]
+    }
+  ],
+  "models": {
+    "knight": {
+      "assets": "assets/models/knight",
+      "texture": "knight_good.png",
+      "animations": {
+        "attack": { "frames": 16 },
+        "crouch": { "frames": 16 },
+        "jump": { "frames": 16 },
+        "run": {
+          "frames": 16,
+          "sound": {
+            "name": "knight_run",
+            "volume": 1
+          }
+        },
+        "salute": { "frames": 16 },
+        "stand": { "frames": 16 },
+        "wave": { "frames": 16 },
+        "point": { "frames": 16 }
+      },
+      "default_animation": "stand"
+    },
+    "weapon_k": {
+      "assets": "assets/models/weapon_k",
+      "texture": "weapon_k.png",
+      "animations": {
+        "attack": { "frames": 16 },
+        "crouch": { "frames": 16 },
+        "jump": { "frames": 16 },
+        "run": { "frames": 16 },
+        "salute": { "frames": 16 },
+        "stand": { "frames": 16 },
+        "wave": { "frames": 16 },
+        "point": { "frames": 16 }
+      },
+      "default_animation": "stand",
+      "default_sound": {
+        "name": "weapon",
+        "volume": 0.3,
+        "loop": true
+      }
+    },
+    "box": {
+      "back": true,
+      "assets": "assets/models/box",
+      "texture": "box.jpg",
+      "animations": { "box": { "frames": 1 } },
+      "default_animation": "box",
+      "position": ["random", "random", 0.2],
+      "instances": 25,
+      "size": 100,
+      "speed": 0.01
+    },
+    "floor": {
+      "assets": "assets/models/floor",
+      "texture": "floor.jpg",
+      "animations": { "floor": { "frames": 1 } },
+      "default_animation": "floor"
+    }
+  }
+}
